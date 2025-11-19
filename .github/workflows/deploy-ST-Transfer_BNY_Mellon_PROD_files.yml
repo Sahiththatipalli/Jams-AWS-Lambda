@@ -1,0 +1,50 @@
+name: Deploy ST-Transfer_BNY_Mellon_PROD_files
+
+on:
+  push:
+    # Change to [ sandbox ] if you want to deploy from sandbox branch
+    branches: [ sandbox ]
+    paths:
+      - 'ST-Transfer_BNY_Mellon_PROD_files/**'
+      - '.github/workflows/deploy-ST-Transfer_BNY_Mellon_PROD_files.yml'
+  workflow_dispatch: {}   # allow manual trigger from Actions tab
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Ensure zip/unzip are installed
+        run: |
+          if ! command -v zip >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y zip unzip
+          fi
+
+      # ⬇️ ONLY zip this Lambda’s folder
+      - name: Create deployment package
+        working-directory: ./ST-Transfer_BNY_Mellon_PROD_files
+        run: |
+          zip -r ../ST-Transfer_BNY_Mellon_PROD_files.zip .
+
+      # Optional: sanity check the zip contents
+      - name: List files in deployment package
+        run: unzip -l ST-Transfer_BNY_Mellon_PROD_files.zip
+
+      - name: Update Lambda function code
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+          args: >
+            lambda update-function-code
+            --function-name arn:aws:lambda:ca-central-1:839358208765:function:ST-Transfer_BNY_Mellon_PROD_files
+            --zip-file fileb://ST-Transfer_BNY_Mellon_PROD_files.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ca-central-1
+
+
+
