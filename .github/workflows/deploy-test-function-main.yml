@@ -2,7 +2,7 @@ name: Deploy test-function
 
 on:
   push:
-    branches: [ main ]
+    branches: [ sandbox ]
     paths:
       - 'test-function/**'
       - '.github/workflows/deploy-test-function-main.yml'
