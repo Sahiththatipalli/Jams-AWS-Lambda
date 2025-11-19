@@ -8,7 +8,7 @@ def send_file_transfer_sns_alert(trace_id, s3_files, box_files, checksum_results
     Send SNS alert with summary of transfer only if errors or warnings exist.
     """
 
-    # Do not send alert if no errors or warnings
+    # Do not send alert if no errors
     if not errors and not warnings:
         return
 
