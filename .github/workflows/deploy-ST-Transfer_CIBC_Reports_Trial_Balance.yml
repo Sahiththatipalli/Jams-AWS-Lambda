@@ -1,0 +1,48 @@
+name: Deploy ST-Transfer_CIBC_Reports_Trial_Balance
+
+on:
+  push:
+    # Change to [ sandbox ] if you want deployments from sandbox branch
+    branches: [ sandbox ]
+    paths:
+      - 'ST-Transfer_CIBC_Reports_Trial_Balance/**'
+      - '.github/workflows/deploy-ST-Transfer_CIBC_Reports_Trial_Balance.yml'
+  workflow_dispatch: {}   # allows manual trigger from Actions tab
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Ensure zip/unzip are installed
+        run: |
+          if ! command -v zip >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y zip unzip
+          fi
+
+      # ⬇️ Zip ONLY this Lambda’s folder
+      - name: Create deployment package
+        working-directory: ./ST-Transfer_CIBC_Reports_Trial_Balance
+        run: |
+          zip -r ../ST-Transfer_CIBC_Reports_Trial_Balance.zip .
+
+      # ⬇️ Optional: Sanity check contents of the ZIP
+      - name: List files in deployment package
+        run: unzip -l ST-Transfer_CIBC_Reports_Trial_Balance.zip
+
+      # ⬇️ Deploy to AWS Lambda
+      - name: Update Lambda function code
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+          args: >
+            lambda update-function-code
+            --function-name arn:aws:lambda:ca-central-1:839358208765:function:ST-Transfer_CIBC_Reports_Trial_Balance
+            --zip-file fileb://ST-Transfer_CIBC_Reports_Trial_Balance.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ca-central-1
