@@ -12,20 +12,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      # Create zip ONLY from test-function folder
-      - name: Create zip file for Lambda code
+      # Make sure zip is available (usually already installed, but safe)
+      - name: Install zip (if needed)
+        run: |
+          if ! command -v zip >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y zip unzip
+          fi
+
+      # ⬇️ ONLY zip the test-function folder
+      - name: Create deployment package
         working-directory: ./test-function
         run: |
+          ls -R
           zip -r ../test-function.zip .
 
-      # Show contents of the zip (sanity check)
+      # Sanity check the contents of the zip
       - name: List files in deployment package
         run: unzip -l test-function.zip
 
       # Deploy to Lambda
-      - name: AWS CLI v2
+      - name: Update Lambda function code
         uses: imehedi/actions-awscli-v2@latest
         with:
           args: >
