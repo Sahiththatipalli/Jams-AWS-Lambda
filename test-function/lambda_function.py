@@ -22,7 +22,7 @@ from retry_utils import default_retry
 from storage_utils import (
     get_business_day_str,
     upload_files_to_box_for_day,
-    upload_files_to_box_prev_bday,   # kept for other jobs
+    upload_files_to_box_prev_bday,   # kept for other jobs and duties'
     upload_sam_output_to_box,        # NEW
     upload_pe_output_to_box          # NEW
 )
