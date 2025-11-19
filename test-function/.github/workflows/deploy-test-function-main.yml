@@ -17,10 +17,17 @@ jobs:
       - name: Install zip tool
         uses: montudor/action-zip@v1
 
+      # 1) Create zip that contains ONLY the test-function code
       - name: Create zip file for Lambda code
-        working-directory: ./test-function
-        run: zip -r ../test-function.zip .
+        run: |
+          cd test-function
+          zip -r ../test-function.zip .
 
+      # 2) Show what's inside the zip (for your verification)
+      - name: List files in deployment package
+        run: unzip -l test-function.zip
+
+      # 3) Deploy to Lambda
       - name: AWS CLI v2
         uses: imehedi/actions-awscli-v2@latest
         with:
