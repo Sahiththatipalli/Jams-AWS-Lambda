@@ -1,4 +1,4 @@
-# lambda_function.py — UPDATED to derive S3 folder from YYYYMMDD in filename
+# lambda_function.py — UPDATED to derive S3 folder from YYYYMMDD in filename and folder
 
 import os
 import json
