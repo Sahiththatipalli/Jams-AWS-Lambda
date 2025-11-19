@@ -1,0 +1,35 @@
+name: Deploy test-function
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'test-function/**'
+      - '.github/workflows/deploy-test-function-main.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install zip tool
+        uses: montudor/action-zip@v1
+
+      # ⬇️ ONLY zip the test-function folder
+      - name: Create zip file for Lambda code
+        working-directory: ./test-function
+        run: zip -r code.zip .
+
+      - name: AWS CLI v2
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+          args: >
+            lambda update-function-code
+            --function-name arn:aws:lambda:ca-central-1:839358208765:function:test-function
+            --zip-file fileb://test-function/code.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ca-central-1
