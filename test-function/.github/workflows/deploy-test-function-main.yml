@@ -1,0 +1,55 @@
+name: Deploy test-function from main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "test-function/**"
+      - ".github/workflows/deploy-test-function-main.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Get the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Python (for installing deps if you ever add requirements.txt)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3) Configure AWS creds
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1
+
+      # 4) Quick syntax check
+      - name: Quick syntax check
+        run: |
+          python -m py_compile test-function/lambda_function.py
+
+      # 5) Build ZIP only from test-function folder
+      - name: Build deployment package
+        working-directory: test-function
+        run: |
+          rm -f ../code.zip
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt -t .
+          fi
+          zip -r ../code.zip . -x ".git/*"
+
+      # 6) Deploy to Lambda
+      - name: Deploy to AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name "arn:aws:lambda:ca-central-1:839358208765:function:test-function" \
+            --zip-file fileb://code.zip
