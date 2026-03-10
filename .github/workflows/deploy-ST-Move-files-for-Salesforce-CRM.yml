@@ -36,7 +36,7 @@ jobs:
         with:
           args: >
             lambda update-function-code
-            --function-name arn:aws:lambda:ca-central-1:839358208765:function:ST-Move-files-for-Salesforce-CRM
+            --function-name arn:aws:lambda:ca-central-1:839358208765:function:ST-Move_files_for_Salesforce_CRM
             --zip-file fileb://ST-Move-files-for-Salesforce-CRM.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
