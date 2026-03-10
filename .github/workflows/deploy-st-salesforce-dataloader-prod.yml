@@ -1,0 +1,45 @@
+name: Deploy st-salesforce-dataloader-prod
+
+on:
+  push:
+    # Change to [ sandbox ] if you want to deploy from sandbox branch instead
+    branches: [ main ]
+    paths:
+      - 'st-salesforce-dataloader-prod/**'
+      - '.github/workflows/deploy-st-salesforce-dataloader-prod.yml'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Ensure zip and unzip are installed
+        run: |
+          if ! command -v zip >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y zip unzip
+          fi
+
+      - name: Create deployment package
+        working-directory: ./st-salesforce-dataloader-prod
+        run: |
+          zip -r ../st-salesforce-dataloader-prod.zip .
+
+      - name: List files in deployment package
+        run: unzip -l st-salesforce-dataloader-prod.zip
+
+      - name: Update Lambda function code
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+          args: >
+            lambda update-function-code
+            --function-name arn:aws:lambda:ca-central-1:839358208765:function:st-salesforce-dataloader-prod
+            --zip-file fileb://st-salesforce-dataloader-prod.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ca-central-1
