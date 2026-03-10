@@ -3,7 +3,7 @@ name: Deploy st-salesforce-dataloader-prod
 on:
   push:
     # Change to [ sandbox ] if you want to deploy from sandbox branch instead
-    branches: [ main ]
+    branches: [ sandbox ]
     paths:
       - 'st-salesforce-dataloader-prod/**'
       - '.github/workflows/deploy-st-salesforce-dataloader-prod.yml'
