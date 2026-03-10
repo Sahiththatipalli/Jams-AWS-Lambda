@@ -1,0 +1,373 @@
+{
+	"headers": [
+		{
+			"CRMEXTNAV": [
+				{
+					"HeaderName": "Fund_Company_Code__c",
+					"StartPosition": 4,
+					"EndPosition": 6
+				},{
+					"HeaderName": "Fund_Baycom_Code_Fund__c",
+					"StartPosition": 7,
+					"EndPosition": 11
+				},{
+					"HeaderName": "Fund_Code_Investment_Code__c",
+					"StartPosition": 12,
+					"EndPosition": 15
+				},{
+					"HeaderName": "Fund_Currency__c",
+					"StartPosition": 18,
+					"EndPosition": 20
+				},{
+					"HeaderName": "Trade_Date_Raw__c",
+					"StartPosition": 119,
+					"EndPosition": 126
+				},{
+					"HeaderName": "NAV__c",
+					"StartPosition": 129,
+					"EndPosition": 144
+				},{
+					"HeaderName": "Fund_Name__c",
+					"StartPosition": 145,
+					"EndPosition": 184
+				},{
+					"HeaderName": "Fund_Total_value__c",
+					"StartPosition": 374,
+					"EndPosition": 395
+				}
+			],
+			"CRMEXTHLD": [
+				{
+					"HeaderName": "Account_Number__c",
+					"StartPosition": 4,
+					"EndPosition": 19
+				},{
+					"HeaderName": "Fund_Code_Investment_Code__c",
+					"StartPosition": 20,
+					"EndPosition": 24
+				},{
+					"HeaderName": "Fund_Currency__c",
+					"StartPosition": 31,
+					"EndPosition": 33
+				},{
+					"HeaderName": "Market_Value__c",
+					"StartPosition": 178,
+					"EndPosition": 197
+				},{
+					"HeaderName": "Dealer_Code__c",
+					"StartPosition": 319,
+					"EndPosition": 324
+				},{
+					"HeaderName": "Rep_Code__c",
+					"StartPosition": 379,
+					"EndPosition": 384
+				}
+			],
+			"CRMEXTTRN": [
+				{
+					"HeaderName": "Fund_Code__c",
+					"StartPosition":71,
+					"EndPosition":75
+				},{
+					"HeaderName": "Transaction_Number__c",
+					"StartPosition": 141,
+					"EndPosition": 150
+				},{
+					"HeaderName": "Trade_Date_Raw__c",
+					"StartPosition": 151,
+					"EndPosition": 158
+				},{
+					"HeaderName": "Transaction_Type_Code__c",
+					"StartPosition": 175,
+					"EndPosition": 177
+				},{
+					"HeaderName": "Dealer_Code__c",
+					"StartPosition": 202,
+					"EndPosition": 207
+				},{
+					"HeaderName": "Rep_Code__c",
+					"StartPosition": 214,
+					"EndPosition": 219
+				},{
+					"HeaderName": "Net_Amount__c",
+					"StartPosition": 360,
+					"EndPosition": 379
+				},{
+					"HeaderName": "Process_Date_Raw__c",
+					"StartPosition": 561,
+					"EndPosition": 568
+				},{
+					"HeaderName": "Transaction_Status_Code__c",
+					"StartPosition": 560,
+					"EndPosition": 560
+				},{
+					"HeaderName": "Fund_Code_Investment_Code__c",
+					"StartPosition": 76,
+					"EndPosition": 79
+				},{
+					"HeaderName": "LBD_Status_Code__c",
+					"StartPosition": 1948,
+					"EndPosition": 1950
+				}
+			],
+			"CRMEXTREP": [
+				{
+					"HeaderName": "Record Type",
+					"EndPosition": 3
+				},
+				{
+					"HeaderName": "Rep Dealer Code",
+					"EndPosition": 9
+				},
+				{
+					"HeaderName": "Rep Branch Code",
+					"EndPosition": 15
+				},
+				{
+					"HeaderName": "Rep Code",
+					"EndPosition": 21
+				},
+				{
+					"HeaderName": "Rep Name",
+					"EndPosition": 61
+				},
+				{
+					"HeaderName": "Dealer Name1",
+					"EndPosition": 101
+				},
+				{
+					"HeaderName": "Dealer Name2",
+					"EndPosition": 141
+				},
+				{
+					"HeaderName": "Address Line 1",
+					"EndPosition": 181
+				},
+				{
+					"HeaderName": "Address Line 2",
+					"EndPosition": 221
+				},
+				{
+					"HeaderName": "Address Line 3",
+					"EndPosition": 261
+				},
+				{
+					"HeaderName": "Province/State",
+					"EndPosition": 265
+				},
+				{
+					"HeaderName": "Postal Code",
+					"EndPosition": 274
+				},
+				{
+					"HeaderName": "Country",
+					"EndPosition": 278
+				},
+				{
+					"HeaderName": "Phone Number",
+					"EndPosition": 288
+				},
+				{
+					"HeaderName": "Salutation",
+					"EndPosition": 294
+				},
+				{
+					"HeaderName": "Wholesaler ID",
+					"EndPosition": 297
+				},
+				{
+					"HeaderName": "User Id",
+					"EndPosition": 307
+				},
+				{
+					"HeaderName": "Add Date - when dealer rep was activated",
+					"EndPosition": 315
+				},
+				{
+					"HeaderName": "Change Date",
+					"EndPosition": 323
+				},
+				{
+					"HeaderName": "Met. Company Code",
+					"EndPosition": 326
+				},
+				{
+					"HeaderName": "Address Line 4 - dealer",
+					"EndPosition": 366
+				},
+				{
+					"HeaderName": "Address Line 5 - dealer",
+					"EndPosition": 406
+				},
+				{
+					"HeaderName": "Deff",
+					"EndPosition": 414
+				},
+				{
+					"HeaderName": "Stop Date - when rep code becomes inactive",
+					"EndPosition": 422
+				},
+				{
+					"HeaderName": "Dealer Contact",
+					"EndPosition": 452
+				},
+				{
+					"HeaderName": "Dealer Contact Fax",
+					"EndPosition": 477
+				},
+				{
+					"HeaderName": "Dealer Contact Email",
+					"EndPosition": 517
+				},
+				{
+					"HeaderName": "Dealer Phone",
+					"EndPosition": 542
+				},
+				{
+					"HeaderName": "Dealer Otherids",
+					"EndPosition": 566
+				},
+				{
+					"HeaderName": "Branch Otherids",
+					"EndPosition": 590
+				},
+				{
+					"HeaderName": "Rep Otherids",
+					"EndPosition": 610
+				},
+				{
+					"HeaderName": "Confirm",
+					"EndPosition": 611
+				},
+				{
+					"HeaderName": "Key Account",
+					"EndPosition": 612
+				},
+				{
+					"HeaderName": "Sales Rep Position",
+					"EndPosition": 632
+				},
+				{
+					"HeaderName": "Sales Rep Status - active or inactive",
+					"EndPosition": 642
+				},
+				{
+					"HeaderName": "Start Up Date",
+					"EndPosition": 650
+				},
+				{
+					"HeaderName": "Top Date",
+					"EndPosition": 658
+				},
+				{
+					"HeaderName": "Top Status",
+					"EndPosition": 662
+				},
+				{
+					"HeaderName": "Top VIP",
+					"EndPosition": 663
+				},
+				{
+					"HeaderName": "Sub Agency Agreement",
+					"EndPosition": 664
+				},
+				{
+					"HeaderName": "Alliance eligibility",
+					"EndPosition": 665
+				},
+				{
+					"HeaderName": "Correspondent",
+					"EndPosition": 666
+				},
+				{
+					"HeaderName": "Marketing Materials Flag",
+					"EndPosition": 667
+				},
+				{
+					"HeaderName": "Phone Extension",
+					"EndPosition": 672
+				},
+				{
+					"HeaderName": "Toll Free Number",
+					"EndPosition": 697
+				},
+				{
+					"HeaderName": "Mail Code",
+					"EndPosition": 698
+				},
+				{
+					"HeaderName": "Trailer Fee Eligibility",
+					"EndPosition": 699
+				},
+				{
+					"HeaderName": "Territory Code",
+					"EndPosition": 702
+				},
+				{
+					"HeaderName": "Territory Address Line 1 - rep address",
+					"EndPosition": 742
+				},
+				{
+					"HeaderName": "Territory Address Line 2 - rep address",
+					"EndPosition": 782
+				},
+				{
+					"HeaderName": "Territory Address Line 3 - rep address",
+					"EndPosition": 822
+				},
+				{
+					"HeaderName": "Territory Address Line 4 - rep address",
+					"EndPosition": 862
+				},
+				{
+					"HeaderName": "Territory Address Line 5 - rep address",
+					"EndPosition": 902
+				},
+				{
+					"HeaderName": "Territory Postal Code - rep postal code",
+					"EndPosition": 912
+				},
+				{
+					"HeaderName": "Territory Address Country Code - rep country",
+					"EndPosition": 916
+				},
+				{
+					"HeaderName": "Territory Address to Use",
+					"EndPosition": 917
+				},
+				{
+					"HeaderName": "Rep Link ID",
+					"EndPosition": 927
+				},
+				{
+					"HeaderName": "Territory City - rep city",
+					"EndPosition": 957
+				},
+				{
+					"HeaderName": "Territory Province - rep province",
+					"EndPosition": 959
+				},
+				{
+					"HeaderName": "City - rep city",
+					"EndPosition": 989
+				},
+				{
+					"HeaderName": "Use Branch",
+					"EndPosition": 992
+				},
+				{
+					"HeaderName": "Use Dealer",
+					"EndPosition": 995
+				},
+				{
+					"HeaderName": "Province/State Alpha Code",
+					"EndPosition": 997
+				},
+				{
+					"HeaderName": "Numeric Country Code",
+					"EndPosition": 1001
+				}
+			]
+		}
+	]
+}
