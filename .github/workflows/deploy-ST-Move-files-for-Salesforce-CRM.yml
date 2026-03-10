@@ -1,12 +1,11 @@
-name: Deploy ST-Move_files_for_Salesforce_CRM
+name: Deploy ST-Move-files-for-Salesforce-CRM (sandbox)
 
 on:
   push:
-    # Use sandbox for testing. Change to [ main ] for prod if needed.
     branches: [ sandbox ]
     paths:
-      - 'ST-Move_files_for_Salesforce_CRM/**'
-      - '.github/workflows/deploy-ST-Move_files_for_Salesforce_CRM.yml'
+      - 'ST-Move-files-for-Salesforce-CRM/**'
+      - '.github/workflows/deploy-ST-Move-files-for-Salesforce-CRM.yml'
   workflow_dispatch: {}
 
 jobs:
@@ -24,15 +23,13 @@ jobs:
             sudo apt-get install -y zip unzip
           fi
 
-      # Only zip the Salesforce CRM Lambda folder
       - name: Create deployment package
-        working-directory: ./ST-Move_files_for_Salesforce_CRM
+        working-directory: ./ST-Move-files-for-Salesforce-CRM
         run: |
-          zip -r ../ST-Move_files_for_Salesforce_CRM.zip .
+          zip -r ../ST-Move-files-for-Salesforce-CRM.zip .
 
-      # Optional sanity check of the deployment package
       - name: List files in deployment package
-        run: unzip -l ST-Move_files_for_Salesforce_CRM.zip
+        run: unzip -l ST-Move-files-for-Salesforce-CRM.zip
 
       - name: Update Lambda function code
         uses: imehedi/actions-awscli-v2@latest
@@ -40,7 +37,7 @@ jobs:
           args: >
             lambda update-function-code
             --function-name arn:aws:lambda:ca-central-1:839358208765:function:ST-Move_files_for_Salesforce_CRM
-            --zip-file fileb://ST-Move_files_for_Salesforce_CRM.zip
+            --zip-file fileb://ST-Move-files-for-Salesforce-CRM.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
